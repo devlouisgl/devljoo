@@ -1,0 +1,525 @@
+/* ===== MySQL Backup Pro Admin Styles v2.2 ===== */
+
+.mbp-wrap { max-width: 1200px; }
+
+/* ----- Grid de estadisticas ----- */
+.mbp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.mbp-card {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 6px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    transition: transform .15s;
+}
+.mbp-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,.08); }
+
+.mbp-card .dashicons {
+    width: 44px; height: 44px; font-size: 26px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 8px; color: #fff; flex-shrink: 0;
+}
+.mbp-card h2 { margin: 0; font-size: 1.8em; }
+.mbp-card p  { margin: 2px 0 0; color: #646970; font-size: .9em; }
+
+.mbp-card-blue    .dashicons { background: #2271b1; }
+.mbp-card-green   .dashicons { background: #46b450; }
+.mbp-card-red     .dashicons { background: #dc3232; }
+.mbp-card-orange  .dashicons { background: #d63638; }
+.mbp-card-purple  .dashicons { background: #7c3aed; }
+
+/* ----- Secciones ----- */
+.mbp-section {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+.mbp-section h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f1;
+    font-size: 1.2em;
+}
+.mbp-section-highlight {
+    border-left: 4px solid #2271b1;
+}
+
+/* ----- Tablas ----- */
+.mbp-table { margin-top: 10px; }
+.mbp-table th { background: #f6f7f7; font-weight: 600; }
+.mbp-table td { vertical-align: middle; }
+
+/* ----- Badges ----- */
+.mbp-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: .82em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+}
+.mbp-badge-green  { background: #d4edda; color: #155724; }
+.mbp-badge-red    { background: #f8d7da; color: #721c24; }
+.mbp-badge-gray   { background: #e2e3e5; color: #383d41; }
+.mbp-badge-orange { background: #fff3cd; color: #856404; }
+
+/* ----- Tipo de backup ----- */
+.mbp-type {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: .85em;
+    background: #e0e0e0;
+    color: #333;
+    text-transform: capitalize;
+}
+.mbp-type-automatic { background: #d4edda; color: #155724; }
+.mbp-type-manual    { background: #cce5ff; color: #004085; }
+
+/* ----- S3 Badges ----- */
+.mbp-s3-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: .8em;
+    font-weight: 500;
+}
+.mbp-s3-yes  { background: #d4edda; color: #155724; }
+.mbp-s3-no   { background: #fff3cd; color: #856404; }
+.mbp-s3-none { background: #e2e3e5; color: #999; }
+
+/* ----- Roles ----- */
+.mbp-role {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: .78em;
+    font-weight: 500;
+    margin: 1px;
+}
+.mbp-role-administrator { background: #f8d7da; color: #721c24; }
+.mbp-role-editor        { background: #d4edda; color: #155724; }
+.mbp-role-author        { background: #cce5ff; color: #004085; }
+.mbp-role-contributor   { background: #fff3cd; color: #856404; }
+.mbp-role-subscriber    { background: #e2e3e5; color: #383d41; }
+
+/* ----- Toggle Switch ----- */
+.mbp-toggle {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+}
+.mbp-toggle input { opacity: 0; width: 0; height: 0; }
+.mbp-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #ccc;
+    border-radius: 24px;
+    transition: .25s;
+}
+.mbp-toggle-slider:before {
+    content: "";
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background: #fff;
+    border-radius: 50%;
+    transition: .25s;
+}
+.mbp-toggle input:checked + .mbp-toggle-slider { background: #2271b1; }
+.mbp-toggle input:checked + .mbp-toggle-slider:before { transform: translateX(22px); }
+
+/* ----- Notices ----- */
+.mbp-notice {
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin: 12px 0;
+}
+.mbp-notice-info {
+    background: #e5f5fa;
+    border-left: 4px solid #00a0d2;
+}
+.mbp-notice-error {
+    background: #f8d7da;
+    border-left: 4px solid #dc3232;
+    color: #721c24;
+}
+.mbp-settings code {
+    background: #f0f0f1;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+/* ----- Botones ----- */
+.button-lg {
+    padding: 6px 18px !important;
+    font-size: 14px;
+    height: auto !important;
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+}
+
+.mbp-btn-download .dashicons,
+.mbp-btn-delete .dashicons,
+.mbp-btn-upload-s3 .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 1.2;
+}
+
+.mbp-btn-upload-s3 {
+    color: #2271b1 !important;
+}
+.mbp-btn-upload-s3:hover {
+    color: #135e96 !important;
+}
+
+.mbp-actions {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+/* ----- Modal / Progreso ----- */
+#mbp-modal {
+    position: fixed;
+    z-index: 99999;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mbp-modal-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+}
+.mbp-modal-box {
+    position: relative;
+    background: #fff;
+    padding: 30px 35px;
+    border-radius: 6px;
+    min-width: 360px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0,0,0,.3);
+}
+.mbp-modal-small {
+    min-width: 320px;
+    max-width: 420px;
+}
+.mbp-progress {
+    width: 100%;
+    height: 8px;
+    background: #f0f0f1;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+.mbp-progress-bar {
+    height: 100%;
+    width: 0;
+    background: #2271b1;
+    border-radius: 4px;
+    transition: width .3s;
+}
+.mbp-progress-bar.active  { width: 85%; }
+.mbp-progress-bar.success { width: 100%; background: #46b450; }
+.mbp-progress-bar.error   { width: 100%; background: #dc3232; }
+
+/* ----- Animacion de fila nueva ----- */
+@keyframes mbp-row-highlight {
+    0%   { background-color: #d4edda; }
+    100% { background-color: transparent; }
+}
+.mbp-row-new {
+    animation: mbp-row-highlight 2s ease-out;
+}
+
+/* ----- Empty ----- */
+.mbp-empty {
+    text-align: center;
+    padding: 30px;
+    color: #646970;
+}
+
+/* ============================================================
+   S3 EXPLORER v2.2
+   ============================================================ */
+
+.mbp-s3-explorer h1 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Toolbar principal */
+.mbp-s3-toolbar {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin: 15px 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+.mbp-s3-toolbar-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.mbp-s3-toolbar-filters {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f1;
+}
+
+/* Breadcrumb */
+.mbp-s3-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: .95em;
+    flex-wrap: wrap;
+}
+.mbp-s3-breadcrumb a {
+    color: #2271b1;
+    text-decoration: none;
+}
+.mbp-s3-breadcrumb a:hover {
+    text-decoration: underline;
+}
+.mbp-s3-breadcrumb-sep {
+    color: #999;
+    margin: 0 2px;
+}
+
+/* Acciones */
+.mbp-s3-actions {
+    display: flex;
+    gap: 6px;
+}
+
+/* Buscador */
+.mbp-s3-search-box {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
+    position: relative;
+}
+.mbp-s3-search-box .dashicons-search {
+    position: absolute;
+    left: 10px;
+    color: #999;
+    font-size: 16px;
+    z-index: 1;
+}
+.mbp-s3-search-box input {
+    padding-left: 32px !important;
+    width: 100% !important;
+    border-radius: 4px;
+    transition: border-color .2s, box-shadow .2s;
+}
+.mbp-s3-search-box input:focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+    outline: none;
+}
+#mbp-s3-search-clear {
+    padding: 0;
+    min-width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#mbp-s3-search-clear .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+/* Grupo de filtros */
+.mbp-s3-filter-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.mbp-s3-select {
+    min-height: 32px;
+    padding: 3px 24px 3px 8px;
+    border-radius: 4px;
+    border: 1px solid #8c8f94;
+    background-color: #fff;
+    color: #2c3338;
+    font-size: 13px;
+    cursor: pointer;
+}
+.mbp-s3-select:focus {
+    border-color: #2271b1;
+    box-shadow: 0 0 0 1px #2271b1;
+    outline: none;
+}
+
+/* Info de resultados */
+.mbp-s3-results-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: -5px 0 10px;
+    font-size: .9em;
+    color: #646970;
+    flex-wrap: wrap;
+}
+.mbp-s3-search-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #e5f5fa;
+    border: 1px solid #00a0d2;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: .9em;
+}
+.mbp-s3-search-badge .dashicons {
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    color: #00a0d2;
+}
+.mbp-s3-search-badge a {
+    color: #d63638;
+    text-decoration: none;
+    font-size: .85em;
+}
+.mbp-s3-search-badge a:hover {
+    text-decoration: underline;
+}
+
+/* S3 Folder link */
+.mbp-s3-folder-link {
+    color: #2271b1;
+    text-decoration: none;
+    font-size: 1.05em;
+}
+.mbp-s3-folder-link:hover {
+    text-decoration: underline;
+}
+
+/* S3 delete button */
+.mbp-s3-delete {
+    color: #dc3232 !important;
+}
+.mbp-s3-delete:hover {
+    color: #a00 !important;
+}
+.mbp-s3-delete .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    line-height: 1.2;
+}
+
+/* Paginacion */
+.mbp-s3-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.mbp-s3-pagination-info {
+    color: #646970;
+    font-size: .9em;
+}
+.mbp-s3-pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.mbp-s3-pagination-controls .button {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.mbp-s3-pagination-controls .button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+.mbp-s3-pagination-controls .button .dashicons {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+.mbp-s3-page-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 32px;
+    background: #f6f7f7;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: .95em;
+    color: #1d2327;
+    padding: 0 8px;
+}
+
+/* Spin animation for refresh */
+@keyframes mbp-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.dashicons-spin {
+    animation: mbp-spin 1s linear infinite;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 782px) {
+    .mbp-grid { grid-template-columns: 1fr 1fr; }
+    .mbp-table { overflow-x: auto; display: block; }
+    .mbp-s3-toolbar-row { flex-direction: column; align-items: stretch; }
+    .mbp-s3-toolbar-filters { flex-direction: column; align-items: stretch; }
+    .mbp-s3-search-box { max-width: none; }
+    .mbp-s3-filter-group { justify-content: space-between; }
+    .mbp-s3-breadcrumb { font-size: .85em; }
+    .mbp-s3-actions { justify-content: flex-end; }
+    .mbp-s3-pagination { flex-direction: column; align-items: stretch; }
+    .mbp-s3-pagination-controls { justify-content: center; }
+}
