@@ -1,0 +1,92 @@
+<div class="mbpro-wrap">
+    <h2>{{#str}}backups, local_mysqlbackuppro{{/str}}</h2>
+
+    <div class="mbpro-actions-bar mbpro-mb-3">
+        <button id="mbpro-run-backup" class="btn btn-primary">
+            <i class="fa fa-play"></i> {{#str}}run_backup_now, local_mysqlbackuppro{{/str}}
+        </button>
+        <button id="mbpro-refresh-list" class="btn btn-secondary">
+            <i class="fa fa-refresh"></i> {{#str}}refresh, local_mysqlbackuppro{{/str}}
+        </button>
+    </div>
+
+    <table class="generaltable mbpro-table" id="mbpro-backups-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>{{#str}}file, local_mysqlbackuppro{{/str}}</th>
+                <th>{{#str}}size, local_mysqlbackuppro{{/str}}</th>
+                <th>{{#str}}tables, local_mysqlbackuppro{{/str}}</th>
+                <th>{{#str}}rows, local_mysqlbackuppro{{/str}}</th>
+                <th>{{#str}}type, local_mysqlbackuppro{{/str}}</th>
+                <th>{{#str}}status, local_mysqlbackuppro{{/str}}</th>
+                <th>S3</th>
+                <th>{{#str}}date, local_mysqlbackuppro{{/str}}</th>
+                <th>{{#str}}actions, local_mysqlbackuppro{{/str}}</th>
+            </tr>
+        </thead>
+        <tbody id="mbpro-backups-tbody">
+            {{#backups}}
+            <tr data-id="{{id}}">
+                <td>{{id}}</td>
+                <td><code>{{file_name}}</code></td>
+                <td>{{file_size}}</td>
+                <td>{{tables}}</td>
+                <td>{{rows_count}}</td>
+                <td><span class="mbpro-type mbpro-type-{{backup_type}}">{{backup_type}}</span></td>
+                <td>
+                    {{#status_ok}}
+                        <span class="mbpro-badge mbpro-badge-green">OK</span>
+                    {{/status_ok}}
+                    {{#status_failed}}
+                        <span class="mbpro-badge mbpro-badge-red" title="{{error_msg}}">{{#str}}failed, local_mysqlbackuppro{{/str}}</span>
+                    {{/status_failed}}
+                    {{^status_ok}}{{^status_failed}}
+                        <span class="mbpro-badge mbpro-badge-orange">{{#str}}pending, local_mysqlbackuppro{{/str}}</span>
+                    {{/status_failed}}{{/status_ok}}
+                </td>
+                <td>
+                    {{#has_s3}}
+                        <span class="mbpro-s3-badge mbpro-s3-yes" title="{{s3_key}}"><i class="fa fa-cloud"></i> S3</span>
+                    {{/has_s3}}
+                    {{^has_s3}}
+                        {{#has_file}}
+                            <span class="mbpro-s3-badge mbpro-s3-no"><i class="fa fa-hdd-o"></i> {{#str}}local, local_mysqlbackuppro{{/str}}</span>
+                        {{/has_file}}
+                        {{^has_file}}
+                            <span class="mbpro-s3-badge mbpro-s3-none">-</span>
+                        {{/has_file}}
+                    {{/has_s3}}
+                </td>
+                <td>{{date}}</td>
+                <td class="mbpro-actions">
+                    {{#has_file}}
+                        <button class="btn btn-icon mbpro-btn-download" data-id="{{id}}" title="{{#str}}download, local_mysqlbackuppro{{/str}}">
+                            <i class="fa fa-download"></i>
+                        </button>
+                    {{/has_file}}
+                    {{^has_s3}}
+                        {{#has_file}}
+                            {{#s3_configured}}
+                                <button class="btn btn-icon mbpro-btn-upload-s3" data-id="{{id}}" title="{{#str}}upload_s3, local_mysqlbackuppro{{/str}}">
+                                    <i class="fa fa-cloud-upload"></i>
+                                </button>
+                            {{/s3_configured}}
+                        {{/has_file}}
+                    {{/has_s3}}
+                    <button class="btn btn-icon mbpro-btn-delete" data-id="{{id}}" title="{{#str}}delete, local_mysqlbackuppro{{/str}}">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+            {{/backups}}
+            {{^has_backups}}
+            <tr id="mbpro-no-backups">
+                <td colspan="10" class="mbpro-empty">{{#str}}no_backups, local_mysqlbackuppro{{/str}}</td>
+            </tr>
+            {{/has_backups}}
+        </tbody>
+    </table>
+</div>
+
+{{> local_mysqlbackuppro/modal }}
