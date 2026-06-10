@@ -89,7 +89,7 @@ function local_mysqlbackuppro_get_stats(): array {
  * @return string
  */
 function local_mysqlbackuppro_next_backup_human(): string {
-    $tasks = \core\task\manager::get_scheduled_tasks_for_component('local_mysqlbackuppro');
+    $tasks = \core\task\manager::load_scheduled_tasks_for_component('local_mysqlbackuppro');
     foreach ($tasks as $task) {
         if ($task instanceof \local_mysqlbackuppro\task\scheduled_backup) {
             $next = $task->get_next_run_time();
