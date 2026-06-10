@@ -1,0 +1,170 @@
+<div class="mbpro-wrap mbpro-settings">
+    <h2>{{#str}}settings, local_mysqlbackuppro{{/str}}</h2>
+
+    <form id="mbpro-settings-form">
+
+        <!-- GENERAL -->
+        <div class="mbpro-section">
+            <h3>{{#str}}general_settings, local_mysqlbackuppro{{/str}}</h3>
+            <table class="generaltable mbpro-form-table">
+                <tr>
+                    <th>{{#str}}auto_backups, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <label class="mbpro-toggle">
+                            <input type="checkbox" name="enabled" value="1" {{#enabled}}checked{{/enabled}}>
+                            <span class="mbpro-toggle-slider"></span>
+                        </label>
+                        <p class="form-text">{{#str}}auto_backups_desc, local_mysqlbackuppro{{/str}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{#str}}frequency, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <select name="frequency" class="form-control">
+                            {{#frequencies}}
+                                <option value="{{value}}" {{#selected}}selected{{/selected}}>{{label}}</option>
+                            {{/frequencies}}
+                        </select>
+                        <p class="form-text">{{#str}}frequency_desc, local_mysqlbackuppro{{/str}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{#str}}backup_time, local_mysqlbackuppro{{/str}}</th>
+                    <td><input type="time" name="backup_time" value="{{backup_time}}" class="form-control"></td>
+                </tr>
+                <tr>
+                    <th>{{#str}}gzip_compression, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <label class="mbpro-toggle">
+                            <input type="checkbox" name="compress_backup" value="1" {{#compress}}checked{{/compress}}>
+                            <span class="mbpro-toggle-slider"></span>
+                        </label>
+                        <p class="form-text">{{#str}}gzip_compression_desc, local_mysqlbackuppro{{/str}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{#str}}retention, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <input type="number" name="retention_count" value="{{retention}}" min="1" max="100" class="form-control" style="width:80px;">
+                        <p class="form-text">{{#str}}retention_desc, local_mysqlbackuppro{{/str}}</p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="mbpro-section mbpro-section-highlight">
+            <h3><i class="fa fa-envelope"></i> {{#str}}email_notifications, local_mysqlbackuppro{{/str}}</h3>
+            <table class="generaltable mbpro-form-table">
+                <tr>
+                    <th>{{#str}}notify_email, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <input type="email" name="notify_email" value="{{notify_email}}" class="form-control" placeholder="admin@example.com">
+                        <p class="form-text">{{#str}}notify_email_desc, local_mysqlbackuppro{{/str}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{#str}}test_email, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <button type="button" id="mbpro-test-email" class="btn btn-secondary">
+                            <i class="fa fa-envelope-o"></i> {{#str}}send_test, local_mysqlbackuppro{{/str}}
+                        </button>
+                        <span id="mbpro-email-result" class="mbpro-result-text"></span>
+                        <div id="mbpro-email-status" class="form-text">
+                            <span id="mbpro-email-status-ok" style="display: {{#has_email}}inline{{/has_email}}{{^has_email}}none{{/has_email}};">
+                                {{#str}}email_configured, local_mysqlbackuppro{{/str}}: <code id="mbpro-email-current">{{notify_email}}</code>
+                            </span>
+                            <span id="mbpro-email-status-none" class="text-danger" style="display: {{#has_email}}none{{/has_email}}{{^has_email}}inline{{/has_email}};">
+                                {{#str}}email_not_configured, local_mysqlbackuppro{{/str}}
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- S3 -->
+        <div class="mbpro-section mbpro-section-highlight">
+            <h3><i class="fa fa-cloud"></i> {{#str}}s3_settings, local_mysqlbackuppro{{/str}}</h3>
+
+            <div class="alert alert-info">
+                <strong>{{#str}}for_contabo, local_mysqlbackuppro{{/str}}</strong> {{#str}}contabo_endpoint, local_mysqlbackuppro{{/str}}<br>
+                <strong>{{#str}}path_style, local_mysqlbackuppro{{/str}}</strong> {{#str}}path_style_required, local_mysqlbackuppro{{/str}}
+            </div>
+
+            <table class="generaltable mbpro-form-table">
+                <tr>
+                    <th>{{#str}}endpoint_url, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <input type="url" name="s3_endpoint" value="{{s3_endpoint}}" class="form-control" placeholder="https://eu2.contabostorage.com">
+                        <p class="form-text">{{#str}}endpoint_desc, local_mysqlbackuppro{{/str}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{#str}}region, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <input type="text" name="s3_region" value="{{s3_region}}" class="form-control" placeholder="default">
+                        <p class="form-text">{{#str}}region_desc, local_mysqlbackuppro{{/str}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{#str}}bucket_name, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <input type="text" name="s3_bucket" value="{{s3_bucket}}" class="form-control" placeholder="my-bucket">
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{#str}}access_key, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <input type="password" name="s3_access_key" value="" class="form-control" autocomplete="off" placeholder="Your Access Key">
+                        {{#has_access_key}}
+                            <span class="mbpro-badge mbpro-badge-green" style="margin-left:8px;">{{#str}}saved, local_mysqlbackuppro{{/str}}</span>
+                        {{/has_access_key}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{#str}}secret_key, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <input type="password" name="s3_secret_key" value="" class="form-control" autocomplete="off" placeholder="Your Secret Key">
+                        {{#has_secret_key}}
+                            <span class="mbpro-badge mbpro-badge-green" style="margin-left:8px;">{{#str}}saved, local_mysqlbackuppro{{/str}}</span>
+                        {{/has_secret_key}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{#str}}path_style, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <label class="mbpro-toggle">
+                            <input type="checkbox" name="s3_path_style" value="1" {{#s3_path_style}}checked{{/s3_path_style}}>
+                            <span class="mbpro-toggle-slider"></span>
+                        </label>
+                        <p class="form-text">{{#str}}path_style_desc, local_mysqlbackuppro{{/str}}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th>{{#str}}base_path, local_mysqlbackuppro{{/str}}</th>
+                    <td>
+                        <input type="text" name="s3_base_path" value="{{s3_base_path}}" class="form-control" placeholder="mysql-backups">
+                        <p class="form-text">
+                            {{#str}}base_path_desc, local_mysqlbackuppro{{/str}}<br>
+                            <code>{{domain_example}}/{{year}}/{{month}}/backup_{{domain_example}}_{{timestamp}}.sql.gz</code>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="mbpro-mt-3">
+                <button type="button" id="mbpro-test-s3" class="btn btn-secondary">
+                    <i class="fa fa-globe"></i> {{#str}}test_s3, local_mysqlbackuppro{{/str}}
+                </button>
+                <span id="mbpro-test-result" class="mbpro-result-text"></span>
+            </div>
+        </div>
+
+        <div class="mbpro-submit-row">
+            <button type="submit" class="btn btn-primary btn-lg">
+                <i class="fa fa-save"></i> {{#str}}save_settings, local_mysqlbackuppro{{/str}}
+            </button>
+        </div>
+    </form>
+</div>
